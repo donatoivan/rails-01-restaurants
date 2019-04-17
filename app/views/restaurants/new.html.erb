@@ -3,6 +3,20 @@
 <form action="<%= restaurants_path %>" method="POST" >
   <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
 
+  <% if @restaurant.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+    <%= pluralize(@restaurant.errors.count, "error") %> prohibited
+    this article from being saved:
+    </h2>
+    <ul>
+    <% @restaurant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
   <label for="title">Title</label>
   <input type="text" name="title" id="title"/>
 
@@ -17,3 +31,5 @@
 
   <input type="submit" value="Create" />
 </form>
+
+<%= link_to "Back", restaurants_path %>

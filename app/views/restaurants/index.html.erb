@@ -3,7 +3,10 @@
 <ul>
   <% @restaurants.each_with_index do |restaurant, index| %>
     <li>
-      <%= restaurant.title %> - <%= restaurant.food_type %> <%= link_to "show", restaurant_path(restaurant.id) %>
+      <%= restaurant.title %> - <%= restaurant.food_type %> 
+      <%= link_to "show", restaurant_path(restaurant.id) %>
+      <%= link_to "edit", edit_restaurant_path(restaurant.id) %>
+      <%= link_to "delete", restaurant_path(restaurant.id) %>
     </li>
   <% end %>
 </ul>
