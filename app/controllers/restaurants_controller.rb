@@ -1,6 +1,10 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all
+    
+  end
+
+  def all
+    @restaurants = Restaurant.all.sort
   end
 
   def create
@@ -33,6 +37,13 @@ class RestaurantsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.destroy
+   
+    redirect_to root_path
   end
 
   private

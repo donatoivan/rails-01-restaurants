@@ -9,4 +9,47 @@
 <h3>Description</h3>
 <p><%= @restaurant.description %></p>
 
-<%= link_to "Back", :back %>
+<h3>Add a Review</h3>
+
+<form action="<%= review_path %>" method="POST" >
+  <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
+  <input type="hidden" value="<%= @restaurant.id %>" name="restaurant_id" />
+
+  <label for="title">Title</label>
+  <input type="text" name="title" id="title"/>
+
+  <label for="content">Content</label>
+  <input type="text" name="content" id="content"/>
+
+  <label for="rating">Rating</label>
+  <input type="text" name="rating" id="rating" />
+
+  <input type="submit" value="Create" />
+</form>
+<div class="review-conatiner">
+  <h3 style="text-align: center;">Reviews</h3>
+  <div style="border: 1px solid black; text-align: center;">
+  <% total = [] %>
+    <% @restaurant.reviews.each do |review| %>
+      <div>
+        <h3><%= review.title %>
+        <h3>Rating</h3>
+          <% total << review.rating %>
+        <h3><%= review.rating %> out of 5</h3>
+          <%# <% total += review.rating %> 
+        <h3><%= review.content %></h3>
+        <%# <h3><%= review. %>
+        <%= link_to 'delete', delete_review_path(review.id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+      </div>
+      <hr>
+    <% end %>
+    <h3>Average Rating</h3>
+    <h4><%= total.sum.to_f.fdiv(@restaurant.reviews.count).round(2) %> out of 5</h4>
+    <%# <h4><%= @restaurant.reviews.count %>
+  </div>
+</div>
+
+
+<%= link_to "Restaurants Listing", restaurants_path %>
