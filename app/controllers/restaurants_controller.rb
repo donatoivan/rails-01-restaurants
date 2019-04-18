@@ -1,16 +1,16 @@
 class RestaurantsController < ApplicationController
   def index
-    
   end
 
   def all
-    @restaurants = Restaurant.all.sort
+    @restaurants = Restaurant.all.order('created_at DESC')
   end
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
 
     if @restaurant.save
+      flash[:notice] = "Restaurant successfully listed"
       redirect_to @restaurant
     else
       render 'new'
@@ -23,6 +23,12 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @restaurant1 = Restaurant.find(params[:id])
+
+    @restaurants = Restaurant.all.order('created_at DESC')
+
+    @previous_restaurant = @restaurant1.next
+    @next_restaurant = @restaurant1.previous
   end
 
   def edit
@@ -33,6 +39,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
 
     if @restaurant.update(restaurant_params)
+      flash[:notice] = "Restaurant successfully updated"
       redirect_to @restaurant
     else
       render 'edit'
@@ -42,8 +49,9 @@ class RestaurantsController < ApplicationController
   def destroy
     @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
+    flash[:notice] = "Restaurant successfully deleted"
    
-    redirect_to root_path
+    redirect_to all_restaurants_path
   end
 
   private

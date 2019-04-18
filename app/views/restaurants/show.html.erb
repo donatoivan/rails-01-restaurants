@@ -1,3 +1,8 @@
+<%= link_to "Restaurants Listing", all_restaurants_path %>
+<%= link_to "Previous", @previous_restaurant if @restaurant != @restaurants.first%>
+<%= link_to "Next", @next_restaurant if @restaurant != @restaurants.last %>
+
+
 <h2><%= @restaurant.title %></h2>
 
 <h3>Food Type</h3>
@@ -22,7 +27,13 @@
   <input type="text" name="content" id="content"/>
 
   <label for="rating">Rating</label>
-  <input type="text" name="rating" id="rating" />
+  <select name="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
 
   <input type="submit" value="Create" />
 </form>
@@ -45,11 +56,14 @@
       </div>
       <hr>
     <% end %>
-    <h3>Average Rating</h3>
-    <h4><%= total.sum.to_f.fdiv(@restaurant.reviews.count).round(2) %> out of 5</h4>
-    <%# <h4><%= @restaurant.reviews.count %>
+    <% if total.count > 0 %>
+        <h3>Average Rating</h3>
+        <h4><%=  total.sum.to_f.fdiv(@restaurant.reviews.count).round(2) %> out of 5</h4>
+    <% else %>
+        <h4><%= @restaurant.title %> has no reviews</h4>
+    <% end %>    <%# <h4><%= @restaurant.reviews.count %>
   </div>
 </div>
 
 
-<%= link_to "Restaurants Listing", restaurants_path %>
+<%= link_to "Restaurants Listing", all_restaurants_path %>
