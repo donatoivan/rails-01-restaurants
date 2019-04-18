@@ -43,12 +43,14 @@
   <% total = [] %>
     <% @restaurant.reviews.each do |review| %>
       <div>
-        <h3><%= review.title %>
+        <h3>Title</h3>
+        <h3><%= review.title %></h3>
+        <h3>Review</h3>
+        <h3><%= review.content %></h3>
         <h3>Rating</h3>
           <% total << review.rating %>
         <h3><%= review.rating %> out of 5</h3>
           <%# <% total += review.rating %> 
-        <h3><%= review.content %></h3>
         <%# <h3><%= review. %>
         <%= link_to 'delete', delete_review_path(review.id),
               method: :delete,
