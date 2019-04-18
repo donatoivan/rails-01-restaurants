@@ -1,0 +1,29 @@
+<div class="row">
+    <% obj.each_with_index do |restaurant, index| %>
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+      <% total = [] %>
+      <% restaurant.reviews.each do |review| %>
+        <% total << review.rating %>
+      <% end %>
+      <div class="thumbnail" style="border: 1px solid black;">
+        <p><%= restaurant.title %> - <%= restaurant.food_type %></p>
+        <% if restaurant.reviews.length == 0 %>
+          <p><%= restaurant.title %> has no reviews</p>
+        <% else %>
+          <p>Reviews: <%= restaurant.reviews.count %></p>
+        <% end %>
+        <p>Review Average: 
+          <% if total.count > 0 %>
+            <p><%=  total.sum.to_f.fdiv(restaurant.reviews.count).round(2) %> out of 5</p>
+          <% else %>
+            <p><%= restaurant.title %> has no reviews</p>
+          <% end %>
+        <%= link_to "show", restaurant_path(restaurant.id) %>
+        <%= link_to "edit", edit_restaurant_path(restaurant.id) %>
+        <%= link_to 'delete', delete_restaurant_path(restaurant.id),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+    <% end %>
+  </div>

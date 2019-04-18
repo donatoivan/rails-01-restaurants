@@ -1,6 +1,7 @@
 <%= link_to "Restaurants Listing", all_restaurants_path %>
-<%= link_to "Previous", @previous_restaurant if @restaurant != @restaurants.first%>
-<%= link_to "Next", @next_restaurant if @restaurant != @restaurants.last %>
+<%= link_to "Previous", @previous_restaurant if @restaurant != @restaurants.last %>
+<%= link_to "Next", @next_restaurant if @restaurant != @restaurants.first%>
+
 
 
 <h2><%= @restaurant.title %></h2>

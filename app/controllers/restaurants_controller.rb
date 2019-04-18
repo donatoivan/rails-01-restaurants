@@ -3,7 +3,8 @@ class RestaurantsController < ApplicationController
   end
 
   def all
-    @restaurants = Restaurant.all.order('created_at DESC')
+    # @restaurants = Restaurant.all.order('created_at DESC')
+    @restaurants= Restaurant.paginate(page: params[:page], per_page: 6)
   end
 
   def create
@@ -27,8 +28,8 @@ class RestaurantsController < ApplicationController
 
     @restaurants = Restaurant.all.order('created_at DESC')
 
-    @previous_restaurant = @restaurant1.next
-    @next_restaurant = @restaurant1.previous
+    @previous_restaurant = @restaurant1.previous
+    @next_restaurant = @restaurant1.next
   end
 
   def edit
