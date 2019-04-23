@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
 
   def all
     # @restaurants = Restaurant.all.order('created_at DESC')
-    @restaurants= Restaurant.paginate(page: params[:page], per_page: 6)
+    @restaurants = Restaurant.paginate(page: params[:page], per_page: 6)
   end
 
   def create
@@ -12,7 +12,8 @@ class RestaurantsController < ApplicationController
 
     if @restaurant.save
       flash[:notice] = "Restaurant successfully listed"
-      redirect_to @restaurant
+      redirect_to restaurant_path(@restaurant)
+      #same as redirect_to @restaurant
     else
       render 'new'
     end
@@ -28,8 +29,8 @@ class RestaurantsController < ApplicationController
 
     @restaurants = Restaurant.all.order('created_at DESC')
 
-    @previous_restaurant = @restaurant1.previous
-    @next_restaurant = @restaurant1.next
+    @previous_restaurant = @restaurant1.next
+    @next_restaurant = @restaurant1.previous
   end
 
   def edit
