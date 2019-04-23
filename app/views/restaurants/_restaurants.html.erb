@@ -19,10 +19,12 @@
             <p><%= restaurant.title %> has no reviews</p>
           <% end %>
         <%= link_to "show", restaurant_path(restaurant.id) %>
-        <%= link_to "edit", edit_restaurant_path(restaurant.id) %>
-        <%= link_to 'delete', delete_restaurant_path(restaurant.id),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
+        <% if can? :update, restaurant %>
+          <%= link_to "edit", edit_restaurant_path(restaurant.id) %>
+          <%= link_to 'delete', delete_restaurant_path(restaurant.id),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+         <% end %>
       </div>
     </div>
     <% end %>

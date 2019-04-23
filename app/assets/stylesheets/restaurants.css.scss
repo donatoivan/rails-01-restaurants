@@ -7,14 +7,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 70px);
 }
 
 .index-container {
-  background-image: asset_url('brick.jpg');
-  filter: brightness(35%);
-  height: 100vh;
-  background-position: center;
+  background-image: asset_url('eat.jpg');
+  // filter: brightness(35%);
+  height: calc(100vh - 70px);
+  background-position: center bottom;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -49,4 +49,76 @@
 
 .restaurant-title {
   text-align: center;
+}
+
+.con-nav {
+  padding: 0px !important;
+  height: 70px;
+  background: black;
+  color: white;
+}
+
+.navbar {
+  height: 100%;
+}
+
+.navbar-nav {
+  display: flex;
+}
+
+.pull-right {
+  flex-direction: row !important;
+  width: 200px;
+  justify-content: flex-end;
+}
+
+.nav-right {
+  list-style: none;
+  display: flex;
+  padding: 0px;
+}
+
+.nav-pad {
+  padding: 10px;
+}
+
+.white-link {
+  color: white;
+  font-size: 20px;
+  font-family: 'Abril Fatface', cursive;
+}
+
+.white-link:hover {
+  color: #fd1d2d;
+  text-decoration: none;
+}
+
+.home {
+  color: white;
+  font-size: 30px;
+  font-family: 'Abril Fatface', cursive;
+}
+
+.home:hover {
+  color: #fd1d2d;
+  text-decoration: none;
+}
+
+.form-header {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.new_user {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.form-container {
+  width: 400px !important;
+  border: 1px solid black;
 }

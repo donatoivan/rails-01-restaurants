@@ -11,9 +11,13 @@
   </head>
 
   <body>
-    <% if flash[:notice] %>
-      <div class="notice"><%= flash[:notice] %></div>
-    <% end %>
+    <%# <% unless action_name == "index" %>
+      <%= render 'layouts/navbar' %>
+    <%# end %>
+
+    <%# <% if flash[:notice] %>
+      <%# <div class="notice"><%= flash[:notice] %> 
+    <%# <% end %>
     <%= yield %>
   </body>
 </html>

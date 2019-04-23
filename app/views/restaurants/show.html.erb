@@ -14,7 +14,7 @@
 
 <h3>Description</h3>
 <p><%= @restaurant.description %></p>
-
+<% if can? :update, @restaurant.reviews.all %>
 <h3>Add a Review</h3>
 
 <form action="<%= review_path %>" method="POST" >
@@ -38,6 +38,7 @@
 
   <input type="submit" value="Create" />
 </form>
+<% end %>
 <div class="review-conatiner">
   <h3 style="text-align: center;">Reviews</h3>
   <div style="border: 1px solid black; text-align: center;">
@@ -53,9 +54,11 @@
         <h3><%= review.rating %> out of 5</h3>
           <%# <% total += review.rating %> 
         <%# <h3><%= review. %>
-        <%= link_to 'delete', delete_review_path(review.id),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
+        <% if can? :destroy, Review %>
+            <%= link_to 'delete', delete_review_path(review.id),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+        <% end %>
       </div>
       <hr>
     <% end %>
